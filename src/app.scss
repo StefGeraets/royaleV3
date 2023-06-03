@@ -1,0 +1,10 @@
+@import "styles/utils/reset";
+@import "styles/utils/fonts";
+
+$color1: tomato;
+
+body {
+  h1 {
+    color: $color1;
+  }
+}

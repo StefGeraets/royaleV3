@@ -31,5 +31,8 @@
 		"vite": "^4.0.0",
 		"vitest": "^0.31.4"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"sass": "^1.62.1"
+	}
 }
