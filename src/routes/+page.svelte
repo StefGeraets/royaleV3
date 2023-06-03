@@ -4,13 +4,12 @@
 
 <main>
   <div id="map">
-    <Grid cellSize={32} />
+    <Grid />
   </div>
   <aside>
     Sidebar
   </aside>
 </main>
-
 
 <style lang="scss">
   main {
