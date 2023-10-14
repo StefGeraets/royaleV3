@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Sidebar from '$lib/components/Sidebar.svelte';
 	import Grid from '../lib/components/Grid.svelte';
 </script>
 
@@ -6,7 +7,7 @@
 	<div id="map">
 		<Grid />
 	</div>
-	<aside>Sidebar</aside>
+	<Sidebar />
 </main>
 
 <style lang="scss">
@@ -20,10 +21,5 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-	}
-
-	aside {
-		width: 20%;
-		background: gainsboro;
 	}
 </style>

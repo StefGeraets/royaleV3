@@ -21,14 +21,19 @@
 			leftPosition += $gameSettings.cellSize;
 		}
 	};
+
+	$: tokenWidth = $gameSettings.cellSize - $gameSettings.cellSize / 4;
 </script>
 
 <svelte:window on:keydown|preventDefault={navigateToken} />
 
 <div
 	class="token"
-	style="left: {leftPosition - 0.5}px; top: {topPosition -
-		0.5}px; width: {$gameSettings.cellSize}px; height: {$gameSettings.cellSize}px"
+	style="
+		left: {leftPosition - 0.5 + $gameSettings.cellSize / 4 / 2}px; 
+		top: {topPosition - 0.5 + $gameSettings.cellSize / 4 / 2}px; 
+		width: {tokenWidth}px; 
+		height: {tokenWidth}px"
 ></div>
 
 <style lang="scss">
