@@ -4,7 +4,7 @@
   let topPosition: number = 0;
   let leftPosition: number = 0;
 
-  const navigate = (event: KeyboardEvent) => {
+  const navigateToken = (event: KeyboardEvent): void => {
     if (event.key === "ArrowUp") {
       if (topPosition <= 0) return;
       topPosition -= cellSize;
@@ -24,9 +24,9 @@
   }
 </script>
 
-<svelte:window on:keydown|preventDefault={navigate} />
+<svelte:window on:keydown|preventDefault={navigateToken} />
 
-<div class="token" style="left: {leftPosition - 0.5}px; top: {topPosition - 0.5}px; width: {cellSize}px; height: {cellSize}px">O</div>
+<div class="token" style="left: {leftPosition - 0.5}px; top: {topPosition - 0.5}px; width: {cellSize}px; height: {cellSize}px"></div>
 
 <style lang="scss">
   .token {
