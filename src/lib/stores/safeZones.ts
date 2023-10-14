@@ -17,16 +17,19 @@ export const safeZones = (() => {
     subscribe,
     set,
     update,
-    setNext: (position: RingPos) => {
+    setCurrent: () => {
       update((safeZones) => {
-        if (!safeZones.next) {
-          safeZones.next = position
+        if (safeZones.next) {
+          safeZones.current = safeZones.next
           return safeZones
         }
-
-        safeZones.current = safeZones.next;
+        return safeZones
+      })
+    },
+    setNext: (position: RingPos) => {
+      update((safeZones) => {
         safeZones.next = position
-        return safeZones;
+        return safeZones
       })
     }
   }

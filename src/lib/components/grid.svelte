@@ -1,6 +1,8 @@
 <script lang="ts">
-	import Token from './token.svelte';
 	import { safeZones } from '$lib/stores/safeZones';
+	import Token from './Token.svelte';
+	import MouseRing from './MouseRing.svelte';
+	import SafeZoneIndicator from './SafeZoneIndicator.svelte';
 
 	export let cellSize: number = 32;
 	export let gridCells: number = 24;
@@ -29,8 +31,8 @@
 		const left = e.clientX - clickPos.left;
 		const top = e.clientY - clickPos.top;
 		safeZones.setNext({
-			left: left - (circleSize * cellSize) / 2,
-			top: top - (circleSize * cellSize) / 2
+			left: left - (left % cellSize) + cellSize / 2 - (circleSize * cellSize) / 2,
+			top: top - (top % cellSize) + cellSize / 2 - (circleSize * cellSize) / 2
 		});
 	};
 </script>
@@ -47,19 +49,13 @@
 	on:click={placeRing}
 >
 	<Token {cellSize} {gridCells} />
-	<div
-		class="safeZone"
-		style:left={`${$safeZones.current.left}px`}
-		style:top={`${$safeZones.current.top}px`}
-		style="width: {`${circleSize * cellSize}px`}; height:{`${circleSize * cellSize}px`};"
-	/>
-	<div
-		class="mouse-ring"
-		style:--opacity={ringOpacity}
-		style:left={`${ringLeftPosition}px`}
-		style:top={`${ringTopPosition}px`}
-		style="width: {`${circleSize * cellSize}px`}; height:{`${circleSize * cellSize}px`};"
-	/>
+
+	<SafeZoneIndicator {cellSize} {circleSize} />
+	{#if $safeZones.next}
+		<SafeZoneIndicator next {cellSize} {circleSize} />
+	{/if}
+
+	<MouseRing {ringOpacity} {ringLeftPosition} {ringTopPosition} {cellSize} {circleSize} />
 </div>
 
 <style lang="scss">
@@ -76,22 +72,5 @@
 		background-size: var(--grid-cell-size) var(--grid-cell-size);
 		background-position: -1px -1px;
 		border: 1px solid rgba(229, 231, 235);
-	}
-
-	.mouse-ring {
-		--opacity: 0;
-		opacity: var(--opacity);
-		position: absolute;
-		border: 2px solid seagreen;
-		border-radius: 100%;
-		transition: opacity 200ms ease;
-		pointer-events: none;
-	}
-	.safeZone {
-		position: absolute;
-		border: 2px solid seagreen;
-		border-radius: 100%;
-		transition: opacity 200ms ease;
-		pointer-events: none;
 	}
 </style>
