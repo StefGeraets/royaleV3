@@ -1,17 +1,16 @@
 <script lang="ts">
+	import { gameSettings } from '$lib/stores/gameSettings';
 	import { safeZones } from '$lib/stores/safeZones';
 	import Token from './Token.svelte';
 	import MouseRing from './MouseRing.svelte';
 	import SafeZoneIndicator from './SafeZoneIndicator.svelte';
 
-	export let cellSize: number = 32;
-	export let gridCells: number = 24;
-	export let circleSize: number = 20;
 	let ringOpacity: number = 0;
 	let ringLeftPosition: number = 0;
 	let ringTopPosition: number = 0;
 
-	$: gridSize = `${cellSize * gridCells}px`;
+	$: gridSize = `${$gameSettings.cellSize * $gameSettings.gridCells}px`;
+	$: ringSize = $gameSettings.circleSize * $gameSettings.cellSize;
 
 	const showRing = () => {
 		ringOpacity = 1;
@@ -22,8 +21,8 @@
 	const moveRing = (e: MouseEvent) => {
 		if (!e.target) return;
 		const { target } = e;
-		ringLeftPosition = e.clientX - (target as HTMLElement).offsetLeft - (circleSize * cellSize) / 2;
-		ringTopPosition = e.clientY - (target as HTMLElement).offsetTop - (circleSize * cellSize) / 2;
+		ringLeftPosition = e.clientX - (target as HTMLElement).offsetLeft - ringSize / 2;
+		ringTopPosition = e.clientY - (target as HTMLElement).offsetTop - ringSize / 2;
 	};
 	const placeRing = (e: MouseEvent) => {
 		const { currentTarget } = e;
@@ -31,8 +30,8 @@
 		const left = e.clientX - clickPos.left;
 		const top = e.clientY - clickPos.top;
 		safeZones.setNext({
-			left: left - (left % cellSize) + cellSize / 2 - (circleSize * cellSize) / 2,
-			top: top - (top % cellSize) + cellSize / 2 - (circleSize * cellSize) / 2
+			left: left - (left % $gameSettings.cellSize) + $gameSettings.cellSize / 2 - ringSize / 2,
+			top: top - (top % $gameSettings.cellSize) + $gameSettings.cellSize / 2 - ringSize / 2
 		});
 	};
 </script>
@@ -42,20 +41,20 @@
 <div
 	class="grid"
 	style="width: {gridSize}; height: {gridSize}"
-	style:--grid-cell-size={`${cellSize}px`}
+	style:--grid-cell-size={`${$gameSettings.cellSize}px`}
 	on:mouseenter={showRing}
 	on:mousemove={moveRing}
 	on:mouseleave={hideRing}
 	on:click={placeRing}
 >
-	<Token {cellSize} {gridCells} />
+	<Token />
 
-	<SafeZoneIndicator {cellSize} {circleSize} />
+	<SafeZoneIndicator />
 	{#if $safeZones.next}
-		<SafeZoneIndicator next {cellSize} {circleSize} />
+		<SafeZoneIndicator next />
 	{/if}
 
-	<MouseRing {ringOpacity} {ringLeftPosition} {ringTopPosition} {cellSize} {circleSize} />
+	<MouseRing {ringOpacity} {ringLeftPosition} {ringTopPosition} />
 </div>
 
 <style lang="scss">

@@ -1,24 +1,24 @@
 <script lang="ts">
-  import { safeZones } from "$lib/stores/safeZones";
+	import { gameSettings } from '$lib/stores/gameSettings';
+	import { safeZones } from '$lib/stores/safeZones';
 
-  export let next: boolean = false;
-  export let circleSize: number;
-  export let cellSize: number;
+	export let next: boolean = false;
 
-  $: leftPosition = next ? $safeZones.next?.left : $safeZones.current.left
-  $: topPosition = next ? $safeZones.next?.top : $safeZones.current.top
+	$: leftPosition = next ? $safeZones.next?.left : $safeZones.current.left;
+	$: topPosition = next ? $safeZones.next?.top : $safeZones.current.top;
+	$: ringSize = $gameSettings.circleSize * $gameSettings.cellSize;
 </script>
 
 <div
-  class="safeZone next"
-  style:--border-color={next ? "tomato" : "seagreen"}
-  style:left={`${leftPosition}px`}
-  style:top={`${topPosition}px`}
-  style="width: {`${circleSize * cellSize}px`}; height:{`${circleSize * cellSize}px`};"
+	class="safeZone next"
+	style:--border-color={next ? 'tomato' : 'seagreen'}
+	style:left={`${leftPosition}px`}
+	style:top={`${topPosition}px`}
+	style="width: {ringSize}px; height:{ringSize}px;"
 />
 
 <style>
-  .safeZone {
+	.safeZone {
 		--border-color: seagreen;
 		position: absolute;
 		border: 2px solid var(--border-color);

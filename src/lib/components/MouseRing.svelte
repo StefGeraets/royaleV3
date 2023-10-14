@@ -1,22 +1,22 @@
 <script lang="ts">
-  export let ringOpacity: number;
-  export let ringLeftPosition: number;
-  export let ringTopPosition: number;
-  export let circleSize: number;
-  export let cellSize: number;
+	import { gameSettings } from '$lib/stores/gameSettings';
+	export let ringOpacity: number;
+	export let ringLeftPosition: number;
+	export let ringTopPosition: number;
 
+	$: ringSize = $gameSettings.circleSize * $gameSettings.cellSize;
 </script>
 
 <div
-class="mouse-ring"
-style:--opacity={ringOpacity}
-style:left={`${ringLeftPosition}px`}
-style:top={`${ringTopPosition}px`}
-style="width: {`${circleSize * cellSize}px`}; height:{`${circleSize * cellSize}px`};"
+	class="mouse-ring"
+	style:--opacity={ringOpacity}
+	style:left={`${ringLeftPosition}px`}
+	style:top={`${ringTopPosition}px`}
+	style="width: {`${ringSize}px`}; height:{`${ringSize}px`};"
 />
 
 <style>
-  .mouse-ring {
+	.mouse-ring {
 		--opacity: 0;
 		opacity: var(--opacity);
 		position: absolute;
