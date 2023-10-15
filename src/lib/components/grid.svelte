@@ -49,9 +49,11 @@
 >
 	<Token />
 
-	<SafeZoneIndicator />
 	{#if $safeZones.next}
 		<SafeZoneIndicator next />
+	{/if}
+	{#if $safeZones.current}
+		<SafeZoneIndicator />
 	{/if}
 
 	<MouseRing {ringOpacity} {ringLeftPosition} {ringTopPosition} />
