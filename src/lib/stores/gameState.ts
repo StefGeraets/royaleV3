@@ -28,6 +28,14 @@ export const gameState = (() => {
 				return gameState;
 			});
 		},
+		endGame: () => {
+			gameState.update((gameState) => {
+				gameState.savedTick = 0;
+				gameState.currentTick = 0;
+				gameState.isPlaying = false;
+				return gameState;
+			});
+		},
 		addTick: (tick: number) => {
 			gameState.update((gameState) => {
 				gameState.currentTick = gameState.savedTick + tick;

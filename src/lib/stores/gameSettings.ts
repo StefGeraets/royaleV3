@@ -68,6 +68,9 @@ export const gameRound = (() => {
 				return _roundNumber;
 			});
 		},
+		reset: () => {
+			_roundNumber.set(0);
+		},
 		...roundSettings
 	};
 })();

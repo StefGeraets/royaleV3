@@ -5,13 +5,14 @@
 	const togglePlayPause = (e: KeyboardEvent) => {
 		if (e.code === 'Space') {
 			gameState.togglePlayPause();
-
-			console.log('Game is playing', $gameState.isPlaying);
 		}
 	};
 
 	const stopGame = (gameEnd: boolean) => {
-		if (gameEnd) gameState.togglePlayPause();
+		if (gameEnd) {
+			gameState.endGame();
+			gameRound.reset();
+		}
 	};
 
 	const svgPath = {
