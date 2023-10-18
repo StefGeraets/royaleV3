@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { gameSettings } from '$lib/stores/gameSettings';
+	import { gameRound, gameSettings } from '$lib/stores/gameSettings';
 	import { safeZones } from '$lib/stores/safeZones';
 	import Token from './Token.svelte';
 	import MouseRing from './MouseRing.svelte';
@@ -10,7 +10,7 @@
 	let ringTopPosition: number = 0;
 
 	$: gridSize = `${$gameSettings.cellSize * $gameSettings.gridCells}px`;
-	$: ringSize = $gameSettings.circleSize * $gameSettings.cellSize;
+	$: ringSize = $gameRound.nextRingSize;
 
 	const showRing = () => {
 		ringOpacity = 1;

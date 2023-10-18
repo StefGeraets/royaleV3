@@ -19,9 +19,8 @@ export const gameSettings = (() => {
 	const { subscribe, set, update } = writable<GameSettings>({
 		cellSize: 32,
 		gridCells: 24,
-		// circleSize: 20,
-		circleSize: 1.5,
-		gameTime: 2 * 60,
+		circleSize: 20,
+		gameTime: 1.5 * 60,
 		darkMode: false
 	});
 
@@ -51,10 +50,14 @@ export const gameTime = (() => {
 
 export const gameRound = (() => {
 	const _roundNumber = writable<number>(0);
+	const circleSizes = [20, 12, 5, 1.5];
 	const roundSettings = derived([gameSettings, _roundNumber], ([$gameSettings, $_roundNumber]) => {
 		return {
 			s: $gameSettings,
-			currentRound: $_roundNumber
+			currentRound: $_roundNumber,
+			sizes: circleSizes,
+			currentRingSize: circleSizes[$_roundNumber - 1] * $gameSettings.cellSize,
+			nextRingSize: circleSizes[$_roundNumber] * $gameSettings.cellSize
 		};
 	});
 

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { gameSettings } from '$lib/stores/gameSettings';
+	import { gameRound } from '$lib/stores/gameSettings';
 	export let ringOpacity: number;
 	export let ringLeftPosition: number;
 	export let ringTopPosition: number;
 
-	$: ringSize = $gameSettings.circleSize * $gameSettings.cellSize;
+	$: ringSize = $gameRound.nextRingSize;
 </script>
 
 <div

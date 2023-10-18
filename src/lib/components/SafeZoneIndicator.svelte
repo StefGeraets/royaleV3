@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { gameSettings } from '$lib/stores/gameSettings';
+	import { gameRound, gameSettings } from '$lib/stores/gameSettings';
+	import { gameState } from '$lib/stores/gameState';
 	import { safeZones } from '$lib/stores/safeZones';
 
 	export let next: boolean = false;
 
-	$: leftPosition = next ? $safeZones.next?.left : $safeZones.current.left;
-	$: topPosition = next ? $safeZones.next?.top : $safeZones.current.top;
-	$: ringSize = $gameSettings.circleSize * $gameSettings.cellSize;
+	$: leftPosition = next ? $safeZones.next?.left : $safeZones.current?.left;
+	$: topPosition = next ? $safeZones.next?.top : $safeZones.current?.top;
+	$: ringSize = next ? $gameRound.nextRingSize : $gameRound.currentRingSize;
 </script>
 
 <div
