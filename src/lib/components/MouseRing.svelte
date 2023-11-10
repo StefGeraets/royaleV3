@@ -20,7 +20,7 @@
 		--opacity: 0;
 		opacity: var(--opacity);
 		position: absolute;
-		border: 2px solid gray;
+		border: 2px dotted gray;
 		border-radius: 100%;
 		transition: opacity 200ms ease;
 		pointer-events: none;

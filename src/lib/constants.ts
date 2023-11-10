@@ -1,4 +1,10 @@
-export const events = [
+type Event = {
+	name: 'beforeStart' | 'zoneStart' | 'zoneCountdown' | 'zoneShrink';
+	value: number;
+	percentage: number;
+};
+
+export const events: Event[] = [
 	{
 		name: 'beforeStart',
 		value: 10,

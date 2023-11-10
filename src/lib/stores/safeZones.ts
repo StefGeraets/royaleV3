@@ -3,6 +3,8 @@ import { writable } from 'svelte/store';
 export type RingPos = {
 	left: number;
 	top: number;
+	x: number;
+	y: number;
 };
 
 export type SafeZones = {

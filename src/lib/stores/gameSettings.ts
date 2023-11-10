@@ -20,7 +20,7 @@ export const gameSettings = (() => {
 		cellSize: 32,
 		gridCells: 24,
 		circleSize: 20,
-		gameTime: 1.5 * 60,
+		gameTime: 2 * 60,
 		darkMode: false
 	});
 

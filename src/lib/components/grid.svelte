@@ -31,7 +31,9 @@
 		const top = e.clientY - clickPos.top;
 		safeZones.setNext({
 			left: left - (left % $gameSettings.cellSize) + $gameSettings.cellSize / 2 - ringSize / 2,
-			top: top - (top % $gameSettings.cellSize) + $gameSettings.cellSize / 2 - ringSize / 2
+			top: top - (top % $gameSettings.cellSize) + $gameSettings.cellSize / 2 - ringSize / 2,
+			x: Math.floor(left / $gameSettings.cellSize),
+			y: Math.floor(top / $gameSettings.cellSize)
 		});
 	};
 </script>

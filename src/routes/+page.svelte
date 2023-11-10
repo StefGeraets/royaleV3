@@ -5,12 +5,14 @@
 	import { gameState } from '$lib/stores/gameState';
 	import { gameSettings } from '$lib/stores/gameSettings';
 	import Map from '$lib/components/Map.svelte';
+	import TimeLine from '$lib/components/TimeLine.svelte';
 </script>
 
 <main class:dark={$gameSettings.darkMode}>
 	<Map>
 		<Grid />
 	</Map>
+	<TimeLine />
 	<Sidebar />
 </main>
 {#if $gameState.isPlaying}

@@ -22,7 +22,7 @@
 		}
 	};
 
-	$: tokenWidth = $gameSettings.cellSize - $gameSettings.cellSize / 4;
+	$: tokenWidth = $gameSettings.cellSize - $gameSettings.cellSize / 5;
 </script>
 
 <svelte:window on:keydown|preventDefault={navigateToken} />
@@ -30,8 +30,8 @@
 <div
 	class="token"
 	style="
-		left: {leftPosition - 0.5 + $gameSettings.cellSize / 4 / 2}px; 
-		top: {topPosition - 0.5 + $gameSettings.cellSize / 4 / 2}px; 
+		left: {leftPosition - 0.5 + $gameSettings.cellSize / 5 / 2}px; 
+		top: {topPosition - 0.5 + $gameSettings.cellSize / 5 / 2}px; 
 		width: {tokenWidth}px; 
 		height: {tokenWidth}px"
 ></div>
@@ -41,5 +41,6 @@
 		display: block;
 		position: absolute;
 		background: tomato;
+		border-radius: 100px;
 	}
 </style>

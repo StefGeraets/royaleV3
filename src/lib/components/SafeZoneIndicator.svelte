@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { gameRound, gameSettings } from '$lib/stores/gameSettings';
-	import { gameState } from '$lib/stores/gameState';
+	import { gameRound } from '$lib/stores/gameSettings';
 	import { safeZones } from '$lib/stores/safeZones';
 
 	export let next: boolean = false;
@@ -11,8 +10,9 @@
 </script>
 
 <div
-	class="safeZone next"
-	style:--border-color={next ? 'tomato' : 'seagreen'}
+	class="safeZone"
+	class:next
+	style:--border-color={next ? 'tomato' : 'gold'}
 	style:left={`${leftPosition}px`}
 	style:top={`${topPosition}px`}
 	style="width: {ringSize}px; height:{ringSize}px;"
@@ -22,9 +22,14 @@
 	.safeZone {
 		--border-color: seagreen;
 		position: absolute;
-		border: 2px solid var(--border-color);
+		border: 1px solid var(--border-color);
 		border-radius: 100%;
 		transition: opacity 200ms ease;
 		pointer-events: none;
+
+		&.next {
+			border-style: dashed;
+			border-width: 2px;
+		}
 	}
 </style>
