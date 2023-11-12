@@ -2,6 +2,7 @@
 	import { triggerEvent } from '$lib/logic/eventHandler';
 	import { gameTime, type GameEvent } from '$lib/stores/gameSettings';
 	import { gameState } from '$lib/stores/gameState';
+	import CountdownClock from './CountdownClock.svelte';
 
 	const handleEvent = (currentEvent: GameEvent | undefined) => {
 		if (currentEvent !== undefined) {
@@ -14,6 +15,7 @@
 </script>
 
 <div class="map">
+	<CountdownClock />
 	<slot />
 </div>
 

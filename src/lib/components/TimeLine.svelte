@@ -3,7 +3,7 @@
 	import { gameState } from '$lib/stores/gameState';
 	import { events } from '$lib/constants';
 	const colors = {
-		beforeStart: 'rgba(0,0,0,0.15)',
+		beforeStart: 'rgba(0,0,0,0.25)',
 		zoneStart: 'rgba(0,0,0,0.15)',
 		zoneCountdown: '#16A34A',
 		zoneShrink: '#DC2626'
@@ -56,6 +56,10 @@
 		top: 0;
 		animation: gameTimeIndicator var(--game-time) linear forwards;
 		animation-play-state: var(--animation-state);
+	}
+
+	:global(.dark) .timebar {
+		background: #fff;
 	}
 
 	@keyframes gameTimeIndicator {

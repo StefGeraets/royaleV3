@@ -5,6 +5,7 @@ export type GameState = {
 	currentTick: number;
 	savedTick: number;
 	currentPeriod: string;
+	showCountdown: boolean;
 };
 
 export const gameState = (() => {
@@ -12,7 +13,8 @@ export const gameState = (() => {
 		isPlaying: false,
 		currentTick: 0,
 		savedTick: 0,
-		currentPeriod: 'beforeStart'
+		currentPeriod: 'beforeStart',
+		showCountdown: false
 	});
 
 	return {
@@ -45,6 +47,18 @@ export const gameState = (() => {
 		setCurrentPeriod: (name: string) => {
 			gameState.update((gameState) => {
 				gameState.currentPeriod = name;
+				return gameState;
+			});
+		},
+		showCountdown: () => {
+			gameState.update((gameState) => {
+				gameState.showCountdown = true;
+				return gameState;
+			});
+		},
+		hideCountdown: () => {
+			gameState.update((gameState) => {
+				gameState.showCountdown = false;
 				return gameState;
 			});
 		}
