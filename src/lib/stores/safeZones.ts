@@ -8,12 +8,16 @@ export type RingPos = {
 };
 
 export type SafeZones = {
+	previous: RingPos;
 	current: RingPos | undefined;
 	next?: RingPos;
 };
 
 export const safeZones = (() => {
-	const { subscribe, set, update } = writable<SafeZones>({ current: undefined });
+	const { subscribe, set, update } = writable<SafeZones>({
+		previous: { left: 0, top: 0, x: 0, y: 0 },
+		current: undefined
+	});
 
 	return {
 		subscribe,
