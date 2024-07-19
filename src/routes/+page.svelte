@@ -1,7 +1,7 @@
 <script lang="ts">
 	import CounterWorker from '$lib/components/CounterWorker.svelte';
 	import Sidebar from '$lib/components/Sidebar.svelte';
-	import Grid from '../lib/components/Grid.svelte';
+	import Grid from '$lib/components/Grid.svelte';
 	import { gameState } from '$lib/stores/gameState';
 	import { gameSettings } from '$lib/stores/gameSettings';
 	import Map from '$lib/components/Map.svelte';
