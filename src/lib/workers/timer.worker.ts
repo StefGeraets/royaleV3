@@ -10,7 +10,7 @@ onmessage = ({ data: { msg } }: MessageEvent<PostMessage<PostMessageDataRequest>
 	}
 };
 
-let timer: NodeJS.Timeout | undefined = undefined;
+let timer: number | undefined = undefined;
 
 const giveTime = () => postMessage({ tick: Math.round(performance.now() / 1000) });
 
